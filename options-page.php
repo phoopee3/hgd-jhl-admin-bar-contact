@@ -60,7 +60,8 @@
             <?php
             $hgd_abc_custom_form = get_option( 'hgd_abc_custom_form', null );
             ?>
-            <input type="text" name="hgd_abc_custom_form" id="hgd_abc_custom_form" value="<?php sanitize_text_field( $hgd_abc_custom_form ); ?>">
+            <textarea rows="1" cols="80" name="hgd_abc_custom_form" id="hgd_abc_custom_form"><?php echo $hgd_abc_custom_form; ?></textarea>
+            <!-- <input type="text" name="hgd_abc_custom_form" id="hgd_abc_custom_form" value="<?php echo sanitize_text_field( $hgd_abc_custom_form ); ?>"> -->
             <br>
             <small>Enter the shortcode from your form builder</small>
         </div>

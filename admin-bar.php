@@ -117,13 +117,35 @@ function hgd_abc_render_script() { ?>
 <?php }
 
 function hgd_abc_default_form() {
+    // get logged in user
+    $current_user = wp_get_current_user();
     ?>
-    the default form will go here
+    <form action="">
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" value="<?php echo $current_user->display_name; ?>"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email" value="<?php echo $current_user->user_email; ?>"></td>
+            </tr>
+            <tr>
+                <td>Subject</td>
+                <td><input type="text" name="subject" placeholder="Enter a Subject"></td>
+            </tr>
+            <tr>
+                <td>Message</td>
+                <td><textarea name="message" id="message" cols="30" rows="10" placeholder="Please describe your problem here"></textarea></td>
+            </tr>
+        </table>
+    </form>
     <?php
 }
 
 function hgd_abc_custom_form() {
     $hgd_abc_custom_form = get_option( 'hgd_abc_custom_form', null );
+    $hgd_abc_custom_form = str_replace( '\\', '', $hgd_abc_custom_form );
     if ( $hgd_abc_custom_form ) {
         echo do_shortcode( $hgd_abc_custom_form );
     } else {
