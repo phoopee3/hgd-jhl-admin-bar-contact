@@ -29,7 +29,7 @@
             <?php
             $hgd_abc_display_button_text = get_option( 'hgd_abc_display_button_text', '' );
             ?>
-            <input type="text" name="hgd_abc_display_button_text" id="hgd_abc_display_button_text" value="<?php echo sanitize_text_field( $hgd_abc_display_button_text ); ?>">
+            <input type="text" name="hgd_abc_display_button_text" id="hgd_abc_display_button_text" value="<?php echo esc_attr( $hgd_abc_display_button_text ); ?>">
             <br>
             <small>This is the text that will be displayed in the admin bar. Default is <i>Contact Support</i></small>
         </div>
@@ -60,8 +60,7 @@
             <?php
             $hgd_abc_custom_form = get_option( 'hgd_abc_custom_form', null );
             ?>
-            <textarea rows="1" cols="80" name="hgd_abc_custom_form" id="hgd_abc_custom_form"><?php echo $hgd_abc_custom_form; ?></textarea>
-            <!-- <input type="text" name="hgd_abc_custom_form" id="hgd_abc_custom_form" value="<?php echo sanitize_text_field( $hgd_abc_custom_form ); ?>"> -->
+            <input type="text" name="hgd_abc_custom_form" id="hgd_abc_custom_form" value="<?php echo esc_attr( $hgd_abc_custom_form ); ?>">
             <br>
             <small>Enter the shortcode from your form builder</small>
         </div>

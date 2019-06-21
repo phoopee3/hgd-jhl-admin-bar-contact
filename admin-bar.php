@@ -54,13 +54,13 @@ function hgd_abc_options_page(  ) {
         update_option('hgd_abc_enabled', $_POST['hgd_abc_enabled']);
     } 
     if (isset($_POST['hgd_abc_display_button_text'])) {
-        update_option('hgd_abc_display_button_text', $_POST['hgd_abc_display_button_text']);
+        update_option( 'hgd_abc_display_button_text', $_POST['hgd_abc_display_button_text'] );
     } 
     if (isset($_POST['hgd_abc_form_type'])) {
         update_option('hgd_abc_form_type', $_POST['hgd_abc_form_type']);
     } 
     if (isset($_POST['hgd_abc_custom_form'])) {
-        update_option('hgd_abc_custom_form', $_POST['hgd_abc_custom_form']);
+        update_option( 'hgd_abc_custom_form', sanitize_text_field( $_POST['hgd_abc_custom_form'] ) );
     } 
     include 'options-page.php';
 }
