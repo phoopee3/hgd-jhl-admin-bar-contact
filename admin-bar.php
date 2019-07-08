@@ -163,7 +163,7 @@ function hgd_abc_default_form() {
             formdata.email   = jQuery( '#hgd-abc-form input[name=email]').val();
             formdata.subject = jQuery( '#hgd-abc-form input[name=subject]').val();
             formdata.message = jQuery( '#hgd-abc-form textarea[name=message]').val();
-            console.log(formdata);
+            // console.log(formdata);
             // make api call
             jQuery.post(
                 '<?php echo get_site_url(); ?>/wp-json/hgd-abc/v1/send-email/',
