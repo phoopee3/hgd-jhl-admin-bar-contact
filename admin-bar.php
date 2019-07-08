@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Admin Bar Support
+Plugin Name: Admin Bar Contact
 Plugin URI: https://hgrantdesigns.com
 Description: Adds a link in the admin bar to contact support
 Version: 1.0
@@ -16,6 +16,11 @@ namespace: hgd-abc or hgd_abc
 
 add_action( 'admin_menu', 'hgd_abc_add_admin_menu' );
 add_action( 'admin_init', 'hgd_abc_settings_init' );
+
+// add thickbox on the front end for the modal popup
+add_action( 'wp_enqueue_scripts', 'add_thickbox' );
+
+include( 'api.php' );
 
 function hgd_abc_add_admin_menu(  ) { 
     // $page_title, $menu_title, $capability, $menu_slug, $function
@@ -52,16 +57,22 @@ function hgd_abc_options_page(  ) {
     // "normal" fields
     if (isset($_POST['hgd_abc_enabled'])) {
         update_option('hgd_abc_enabled', $_POST['hgd_abc_enabled']);
-    } 
+    }
     if (isset($_POST['hgd_abc_display_button_text'])) {
         update_option( 'hgd_abc_display_button_text', $_POST['hgd_abc_display_button_text'] );
-    } 
+    }
     if (isset($_POST['hgd_abc_form_type'])) {
         update_option('hgd_abc_form_type', $_POST['hgd_abc_form_type']);
-    } 
+    }
+    if (isset($_POST['hgd_abc_default_form_subject_prefix'])) {
+        update_option( 'hgd_abc_default_form_subject_prefix', sanitize_text_field( $_POST['hgd_abc_default_form_subject_prefix'] ) );
+    }
+    if (isset($_POST['hgd_abc_default_form_email'])) {
+        update_option( 'hgd_abc_default_form_email', sanitize_text_field( $_POST['hgd_abc_default_form_email'] ) );
+    }
     if (isset($_POST['hgd_abc_custom_form'])) {
         update_option( 'hgd_abc_custom_form', sanitize_text_field( $_POST['hgd_abc_custom_form'] ) );
-    } 
+    }
     include 'options-page.php';
 }
 
@@ -120,7 +131,7 @@ function hgd_abc_default_form() {
     // get logged in user
     $current_user = wp_get_current_user();
     ?>
-    <form action="">
+    <div action="" id='hgd-abc-form'>
         <table>
             <tr>
                 <td>Name</td>
@@ -139,7 +150,41 @@ function hgd_abc_default_form() {
                 <td><textarea name="message" id="message" cols="30" rows="10" placeholder="Please describe your problem here"></textarea></td>
             </tr>
         </table>
-    </form>
+        <button id="hgd-abc-submit-form">Send Message</button>
+    </div>
+
+    <script>
+    jQuery( document ).ready(function() {
+        jQuery( '#hgd-abc-submit-form' ).click( function( e ) {
+            e.preventDefault();
+            // get values
+            var formdata     = {};
+            formdata.name    = jQuery( '#hgd-abc-form input[name=name]' ).val();
+            formdata.email   = jQuery( '#hgd-abc-form input[name=email]').val();
+            formdata.subject = jQuery( '#hgd-abc-form input[name=subject]').val();
+            formdata.message = jQuery( '#hgd-abc-form textarea[name=message]').val();
+            console.log(formdata);
+            // make api call
+            jQuery.post(
+                '<?php echo get_site_url(); ?>/wp-json/hgd-abc/v1/send-email/',
+                { data : formdata },
+                function( data ) {
+                    // console.log( data );
+                    if ( data.success == 1 ) {
+                        // console.log('hide modal');
+                        tb_remove();
+                        // jQuery( '#hgd-abc-form input[name=name]' ).val('');
+                        // jQuery( '#hgd-abc-form input[name=email]').val('');
+                        jQuery( '#hgd-abc-form input[name=subject]').val('');
+                        jQuery( '#hgd-abc-form textarea[name=message]').val('');
+                    } else {
+                        alert('There was an error, try again later');
+                    }
+                }
+            );
+        })
+    });
+    </script>
     <?php
 }
 

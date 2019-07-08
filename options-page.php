@@ -54,6 +54,30 @@
         </div>
     </div>
 
+    <div class="hgd-abc-show-default">
+        <div><label for="hgd_abc_default_form_subject_prefix"><strong>Email subject:</strong></label></div>
+        <div>
+            <?php
+            $hgd_abc_default_form_subject_prefix = get_option( 'hgd_abc_default_form_subject_prefix', null );
+            ?>
+            <input type="text" name="hgd_abc_default_form_subject_prefix" id="hgd_abc_default_form_subject_prefix" value="<?php echo esc_attr( $hgd_abc_default_form_subject_prefix ); ?>">
+            <br>
+            <small>Enter a prefix for the subject line</small>
+        </div>
+    </div>
+    
+    <div class="hgd-abc-show-default">
+        <div><label for="hgd_abc_default_form_email"><strong>Send email to:</strong></label></div>
+        <div>
+            <?php
+            $hgd_abc_default_form_email = get_option( 'hgd_abc_default_form_email', null );
+            ?>
+            <input type="text" name="hgd_abc_default_form_email" id="hgd_abc_default_form_email" value="<?php echo esc_attr( $hgd_abc_default_form_email ); ?>">
+            <br>
+            <small>Enter who should receive the email</small>
+        </div>
+    </div>
+    
     <div class="hgd-abc-show-custom">
         <div><label for="hgd_abc_custom_form"><strong>Form Shortcode</strong></label></div>
         <div>
