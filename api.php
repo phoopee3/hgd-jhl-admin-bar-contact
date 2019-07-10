@@ -26,6 +26,7 @@ add_action( 'rest_api_init', function () {
 // api functions
 function hgd_abc_send_email( $request ) {
     parse_str( $request->get_body(), $data );
+    $data = $data['data'];
 
     // wp_die(var_dump($data));
 
