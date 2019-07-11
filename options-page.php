@@ -35,6 +35,9 @@
         </div>
     </div>
 
+    <!-- For now we want the form type to always be `default` -->
+    <input type="hidden" name="hgd_abc_form_type" id="hgd_abc_form_type_default" value="default">
+    <?php /*
     <div>
         <div style="">
             <label for="hgd_abc_form_type"><strong>Form Type</strong></label>
@@ -53,6 +56,7 @@
             <small>This will allow you to user a form builder for your poopup form. Enter the shortcode in the field below</small>
         </div>
     </div>
+    */ ?>
 
     <div class="hgd-abc-show-default">
         <div><label for="hgd_abc_default_form_subject_prefix"><strong>Email subject:</strong></label></div>
@@ -78,6 +82,7 @@
         </div>
     </div>
     
+    <?php /*
     <div class="hgd-abc-show-custom">
         <div><label for="hgd_abc_custom_form"><strong>Form Shortcode</strong></label></div>
         <div>
@@ -89,6 +94,7 @@
             <small>Enter the shortcode from your form builder</small>
         </div>
     </div>
+    */ ?>
 
     <div style="clear:both;"></div>
 

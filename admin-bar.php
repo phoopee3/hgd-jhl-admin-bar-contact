@@ -3,7 +3,7 @@
 Plugin Name: Admin Bar Contact
 Plugin URI: https://hgrantdesigns.com
 Description: Adds a link in the admin bar to contact support
-Version: 1.0
+Version: 1.0.1
 Author: H Grant Designs	/ Jason Lawton
 Author URI: https://hgrantdesigns.com
 License: MIT
