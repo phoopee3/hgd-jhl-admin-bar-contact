@@ -7,6 +7,7 @@ Version: 1.0
 Author: H Grant Designs	/ Jason Lawton
 Author URI: https://hgrantdesigns.com
 License: MIT
+GitHub Plugin URI: https://github.com/phoopee3/hgd-jhl-admin-bar-contact
 */
 
 /*
