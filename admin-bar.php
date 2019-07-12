@@ -3,7 +3,7 @@
 Plugin Name: Admin Bar Contact
 Plugin URI: https://hgrantdesigns.com
 Description: Adds a link in the admin bar to contact support
-Version: 1.0.1
+Version: 1.0.2
 Author: H Grant Designs	/ Jason Lawton
 Author URI: https://hgrantdesigns.com
 License: MIT
@@ -28,6 +28,7 @@ function hgd_abc_enqueue_scripts() {
 }
 
 include( 'api.php' );
+include( 'dashicons.php' );
 
 function hgd_abc_add_admin_menu(  ) { 
     // $page_title, $menu_title, $capability, $menu_slug, $function
@@ -64,6 +65,9 @@ function hgd_abc_options_page(  ) {
     // "normal" fields
     if (isset($_POST['hgd_abc_enabled'])) {
         update_option('hgd_abc_enabled', $_POST['hgd_abc_enabled']);
+    }
+    if (isset($_POST['hgd_abc_display_button_icon'])) {
+        update_option( 'hgd_abc_display_button_icon', $_POST['hgd_abc_display_button_icon'] );
     }
     if (isset($_POST['hgd_abc_display_button_text'])) {
         update_option( 'hgd_abc_display_button_text', $_POST['hgd_abc_display_button_text'] );
@@ -107,7 +111,7 @@ function hgd_abc_update_adminbar( $wp_adminbar ) {
         // ] );
         $wp_adminbar->add_node( [
             'id'    => 'hgd-abc',
-            'title' => '<span class="ab-icon dashicons dashicons-carrot"></span> ' . __( $hgd_abc_display_button_text ),
+            'title' => '<span class="ab-icon dashicons ' . get_option('hgd_abc_display_button_icon', 'dashicon-carrot') . '"></span> ' . __( $hgd_abc_display_button_text ),
             'href'  => '#',
             'meta'  => [
             ],

@@ -7,6 +7,9 @@
 .hgd-abc-show-custom {
     display: none;
 }
+#hgd_abc_display_button_icon {
+    font-family: 'dashicons', 'arial';
+}
 </style>
 
 <form class="hgd-abc" method="POST">
@@ -21,6 +24,29 @@
     </div>
 
     <!-- <div style="display:inline-block;"> -->
+    <div>
+        <?php
+        $dashicons = jl_get_dashicons();
+        ?>
+        <div style="">
+            <label for="hgd_abc_display_button_icon"><strong>Admin Bar Display Icon</strong></label>
+        </div>
+        <div style="">
+            <?php
+            $hgd_abc_display_button_icon = get_option( 'hgd_abc_display_button_icon', '' );
+            ?>
+            <select name="hgd_abc_display_button_icon" id="hgd_abc_display_button_icon">
+                <option value="">No Icon</option>
+                <?php foreach ($dashicons as $dashicon) { ?>
+                    <option value="<?php echo $dashicon['class']; ?>" <?php if ( $dashicon['class'] == $hgd_abc_display_button_icon ) { echo "selected"; } ?>><?php echo $dashicon['content'] . ' ' . $dashicon['label']; ?></option>
+                <?php } ?>
+            </select>
+            <!-- <input type="text" name="hgd_abc_display_button_text" id="hgd_abc_display_button_text" value="<?php echo esc_attr( $hgd_abc_display_button_text ); ?>"> -->
+            <br>
+            <small>This is the icon that is displayed in front of the Button Text. Default is <span class="dashicons dashicons-carrot"></span></small>
+        </div>
+    </div>
+
     <div>
         <div style="">
             <label for="hgd_abc_display_button_text"><strong>Admin Bar Display Text</strong></label>
