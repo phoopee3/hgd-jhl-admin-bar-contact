@@ -10,6 +10,9 @@
 #hgd_abc_display_button_icon {
     font-family: 'dashicons', 'arial';
 }
+.asIconPicker-list {
+    font-size:30px;
+}
 </style>
 
 <form class="hgd-abc" method="POST">
@@ -23,11 +26,13 @@
         <label style="width:auto;"><input type="radio" name="hgd_abc_enabled" id="hgd_abc_enabled" value="0" <?php echo ( $enabled == 0 ) ? 'checked="checked"' : ''; ?>> No</label>
     </div>
 
+    <?php
+    $dashicons = jl_get_dashicons();
+    ?>
+
     <!-- <div style="display:inline-block;"> -->
     <div>
-        <?php
-        $dashicons = jl_get_dashicons();
-        ?>
+        
         <div style="">
             <label for="hgd_abc_display_button_icon"><strong>Admin Bar Display Icon</strong></label>
         </div>
@@ -44,6 +49,15 @@
             <!-- <input type="text" name="hgd_abc_display_button_text" id="hgd_abc_display_button_text" value="<?php echo esc_attr( $hgd_abc_display_button_text ); ?>"> -->
             <br>
             <small>This is the icon that is displayed in front of the Button Text. Default is <span class="dashicons dashicons-carrot"></span></small>
+
+            <script>
+            jQuery( document ).ready(function() {
+                jQuery('#hgd_abc_display_button_icon').asIconPicker({
+                    extraClass: 'dashicons',
+                    iconPrefix: '',
+                });
+            });
+            </script>
         </div>
     </div>
 

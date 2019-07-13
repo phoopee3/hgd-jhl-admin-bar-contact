@@ -3,7 +3,7 @@
 Plugin Name: Admin Bar Contact
 Plugin URI: https://hgrantdesigns.com
 Description: Adds a link in the admin bar to contact support
-Version: 1.0.2
+Version: 1.0.3
 Author: H Grant Designs	/ Jason Lawton
 Author URI: https://hgrantdesigns.com
 License: MIT
@@ -25,10 +25,16 @@ add_action( 'admin_enqueue_scripts', 'hgd_abc_enqueue_scripts' );
 add_action( 'wp_enqueue_scripts', 'hgd_abc_enqueue_scripts' );
 function hgd_abc_enqueue_scripts() {
     wp_enqueue_script( 'micromodal', 'https://unpkg.com/micromodal/dist/micromodal.min.js' );
+    wp_enqueue_script( 'tooltip', 'https://unpkg.com/jquery-asTooltip@0.4.3/dist/jquery-asTooltip.min.js' );
+    wp_enqueue_style( 'tooltip', 'https://unpkg.com/jquery-asTooltip@0.4.3/dist/css/asTooltip.min.css' );
+    wp_enqueue_script( 'scrollbar', 'https://unpkg.com/jquery-asScrollbar@0.5.7/dist/jquery-asScrollbar.min.js' );
+    wp_enqueue_script( 'iconpicker', 'https://unpkg.com/jquery-asIconPicker@0.2.4/dist/jquery-asIconPicker.min.js' );
+    wp_enqueue_style( 'iconpicker', 'https://unpkg.com/jquery-asIconPicker@0.2.4/dist/css/asIconPicker.min.css' );
 }
 
 include( 'api.php' );
 include( 'dashicons.php' );
+// include( 'iconpicker.php' );
 
 function hgd_abc_add_admin_menu(  ) { 
     // $page_title, $menu_title, $capability, $menu_slug, $function
